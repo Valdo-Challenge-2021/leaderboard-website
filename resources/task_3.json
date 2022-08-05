@@ -1,0 +1,13 @@
+{
+    "name": "Lacunes detection, segmentation and uncertainty",
+    "columns": {
+        "team": "Team",
+        "rank": "Rank",
+        "dsc": "DSC (↑)",
+        "avd": "AVD (↓)",
+        "f1": "F1 (↑)",
+        "acd": "ACD (↓)",
+        "udsc": "UDSC (↑)",
+        "uf1": "UF1 (↑)"
+    }
+}
