@@ -1,13 +1,12 @@
 """Generate the template
 """
+import re
 import json
 import argparse
-from typing import List, Mapping, Any
 from pathlib import Path
+from typing import List, Mapping, Any
 
-import re
 import pandas as pd
-
 
 
 def main(options: argparse.Namespace):
@@ -22,6 +21,7 @@ def main(options: argparse.Namespace):
     # Get json data
     with options.input_json.open('r') as fd:
         json_data: Mapping[str, Any] = json.load(fd)
+    columns: List[str] = [json_data["columns"][column] for column in csv_data.columns]
 
     # Load template
     with options.template_file.open('r') as fd:
@@ -29,6 +29,7 @@ def main(options: argparse.Namespace):
 
     # Substitute
     lines: List[str] = re.sub('##DATA##', str(csv_data_list), lines)
+    lines: List[str] = re.sub('##COLUMNS##', str(columns), lines)
     lines: List[str] = re.sub('##TASKNUMBER##', str(options.task_number), lines)
     lines: List[str] = re.sub('##TITLE##', str(json_data["name"]), lines)
 
