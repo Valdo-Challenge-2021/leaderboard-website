@@ -18,11 +18,22 @@ WEBASSETS=$(ASSETS:$(RESOURCES)/web/%=$(RESULT)/web/%)
 
 INDEX=$(RESULT)/index.html
 
+ROOT_LICENCE=LICENCE
+LICENCE=$(RESULT)/LICENCE
+
+COMMIT_MSG="Update leaderboard"
+
 all: generate publish
 
 publish:
+	git -C $(RESULT) add .
+	git -C $(RESULT) commit -m $(COMMIT_MSG)
+	git -C $(RESULT) push
+	git add .
+	git commit -m $(COMMIT_MSG)
+	git push
 
-generate: $(INDEX) $(HTML) $(JSON) $(WEBASSETS)
+generate: $(INDEX) $(HTML) $(JSON) $(WEBASSETS) $(LICENCE)
 
 $(INDEX): $(HTML) $(JSON)
 	cp $< $@
@@ -33,6 +44,9 @@ $(RESULT)/task_%.html: generate.py $(INPUT)/task_%.csv $(RESOURCES)/task_%.json 
 
 $(RESULT)/web/%: $(RESOURCES)/web/%
 	mkdir -p $(@D)
+	cp $< $@
+
+$(LICENCE): $(ROOT_LICENCE)
 	cp $< $@
 
 clean:
