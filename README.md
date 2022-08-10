@@ -27,6 +27,6 @@ make generate
 
 ## Authors
 
-- Carole Sudre
+- [Carole Sudre](https://github.com/csudre)
 - [Kim van Wijnen](https://github.com/kimvwijnen)
 - [Robin Camarasa](https://github.com/RobinCamarasa)
