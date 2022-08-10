@@ -145,6 +145,18 @@
 
 
 	<script>
+            function compare(a, b){
+                            var a_float = +(a.split(" ")[0]);
+                            var b_float = +(b.split(" ")[0]);
+                            if (a_float > b_float) {
+                                return 1;
+                            }
+                            else if (a_float < b_float) {
+                                return -1;
+                            } else{
+                                return 0;
+                            }
+                        }
 	    new gridjs.Grid(
 		{
                     columns: ##COLUMNS##,

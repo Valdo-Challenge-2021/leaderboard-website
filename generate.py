@@ -14,14 +14,29 @@ def main(options: argparse.Namespace):
     :param options: Options containing input_csv, input_json, output_file and
     template_file
     """
-    # Get csv data
-    csv_data: pd.Dataframe = pd.read_csv(options.input_csv)
-    csv_data_list: List[List[str]] = csv_data.to_numpy().astype(str).tolist()
-
     # Get json data
     with options.input_json.open('r') as fd:
         json_data: Mapping[str, Any] = json.load(fd)
-    columns: List[str] = [json_data["columns"][column] for column in csv_data.columns]
+
+    columns: List[str] = [
+        json_data["columns"][column] if column in ['team', 'rank'] else f"{{name: '{json_data['columns'][column]}', sort: {{compare: compare}} }}"
+        for column in json_data['columns'].keys()
+        ] # Add 25-75 support
+
+    # Get csv data
+    csv_data: pd.Dataframe = pd.read_csv(options.input_csv)
+    csv_data_list: List[List[str]] = []
+    for _, csv_row in csv_data.iterrows():
+        row = []
+        for column in json_data['columns'].keys():
+            if column in ['team', 'rank']:
+                row.append(str(csv_row[column]))
+            else:
+                row.append(
+                    f"{csv_row[f'{column}_med']} [{csv_row[f'{column}_25']}-{csv_row[f'{column}_75']}]"
+                    )
+        csv_data_list.append(row)
+
 
     # Load template
     with options.template_file.open('r') as fd:
@@ -29,7 +44,7 @@ def main(options: argparse.Namespace):
 
     # Substitute
     lines: List[str] = re.sub('##DATA##', str(csv_data_list), lines)
-    lines: List[str] = re.sub('##COLUMNS##', str(columns), lines)
+    lines: List[str] = re.sub('##COLUMNS##', str(columns).replace('"', ''), lines)
     lines: List[str] = re.sub('##TASKNUMBER##', str(options.task_number), lines)
     lines: List[str] = re.sub('##TITLE##', str(json_data["name"]), lines)
 
