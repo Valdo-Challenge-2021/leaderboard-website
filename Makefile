@@ -18,6 +18,9 @@ WEBASSETS=$(ASSETS:$(RESOURCES)/web/%=$(RESULT)/web/%)
 
 INDEX=$(RESULT)/index.html
 
+CSS=$(RESOURCES)/style.css
+WEBCSS=$(RESULT)/style.css
+
 ROOT_LICENCE=LICENCE
 LICENCE=$(RESULT)/LICENCE
 
@@ -33,7 +36,7 @@ publish:
 	git commit -m $(COMMIT_MSG)
 	git push
 
-generate: $(INDEX) $(HTML) $(JSON) $(WEBASSETS) $(LICENCE)
+generate: $(INDEX) $(HTML) $(JSON) $(WEBASSETS) $(LICENCE) $(WEBCSS)
 
 $(INDEX): $(HTML) $(JSON)
 	cp $< $@
@@ -47,6 +50,11 @@ $(RESULT)/web/%: $(RESOURCES)/web/%
 	cp $< $@
 
 $(LICENCE): $(ROOT_LICENCE)
+	mkdir -p $(@D)
+	cp $< $@
+
+$(WEBCSS): $(CSS)
+	mkdir -p $(@D)
 	cp $< $@
 
 clean:
