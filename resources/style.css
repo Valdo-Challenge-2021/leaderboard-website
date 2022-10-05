@@ -106,7 +106,7 @@ thead {
       left: 0;
       background-color: #404346;
       border-color: #404346;
-      opacity: 1;
+      opacity: 1 !important;
       color: #f9fafb !important;
 }
 
