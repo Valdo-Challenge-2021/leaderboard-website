@@ -1,0 +1,64 @@
+h1 {
+    color: #d52229;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+body {
+    background-color: #f9fafb
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.footer-text {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1em;
+    justify-content: center;
+}
+
+.icon {
+    width: 2em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+.valdo:hover {
+    color: #a9bcc5;
+}
+
+.github:hover {
+    color: #000000;
+}
+
+.twitter:hover {
+    color: #52a7e8;
+}
+
+.icon > a {
+    color: inherit;
+}
+
+.mail:hover {
+    color: #fca521;
+}
+
+.footer-icons {
+    color: #d52229;
+    display: flex;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.navbar {
+    background-color: #d52229;
+}
+.footer-text > strong {
+    color: #d52229;
+}
