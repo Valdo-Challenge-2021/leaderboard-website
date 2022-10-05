@@ -9,5 +9,15 @@
         "acd": "ACD (↓)",
         "udsc": "UDSC (↑)",
         "uf1": "UF1 (↑)"
+    },
+    "is_ascending": {
+        "team": true,
+        "rank": true,
+        "dsc": false,
+        "avd": true,
+        "f1": false,
+        "acd": true,
+        "udsc": false,
+        "uf1": true
     }
 }
