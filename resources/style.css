@@ -125,3 +125,7 @@ thead {
 tbody, td, tfoot, th, thead, tr {
     border-style: none;
 }
+input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
