@@ -107,7 +107,7 @@ thead {
       background-color: #404346;
       border-color: #404346;
       color: #f9fafb !important;
-      z-index:-1
+      z-index:-1;
 }
 
 .table th:first-child > .btn {
