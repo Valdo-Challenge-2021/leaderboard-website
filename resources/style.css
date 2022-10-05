@@ -104,9 +104,9 @@ thead {
 .table th:first-child, .table td:first-child {
       position: sticky;
       left: 0;
-      background-color: #404346;
-      border-color: #404346;
-      color: #f9fafb !important;
+      /* background-color: #404346; */
+      /* border-color: #404346; */
+      /* color: #f9fafb !important; */
 }
 
 .table th:first-child > .btn {
