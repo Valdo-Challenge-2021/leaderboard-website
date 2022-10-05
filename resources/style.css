@@ -120,3 +120,7 @@ thead {
     border-color: #f9fafb !important;
     color: #404346 !important;
 }
+
+tbody, td, tfoot, th, thead, tr {
+    border-style: none;
+}
